@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:flutter_mvvm_provider_api/data/exceptions/app_exception.dart';
 import 'package:flutter_mvvm_provider_api/data/network/base_api_class.dart';
 import 'dart:io';
@@ -16,8 +15,8 @@ class MovieApiClass extends BaseApiClass{
   Future getApiCall(String uri) async{
    dynamic jsonResponse;
    try{
-     final response = await http.get(Uri.parse((uri))).timeout(const Duration(seconds: 10));
-     jsonResponse = getResponseParse(response);
+     final response = await http.get(Uri.parse(uri)).timeout(const Duration(seconds: 10));
+     jsonResponse = getParse(response);
    } on SocketException{
      throw FetchException('Problem Data Fetching');
    }
@@ -36,16 +35,21 @@ class MovieApiClass extends BaseApiClass{
     throw UnimplementedError();
   }
 
-  dynamic getResponseParse(http.Response response){
+  dynamic getParse(http.Response response){
     switch( response.statusCode){
       case 200 :
-        dynamic jsonResponse = jsonDecode(response.body);
+        var jsonResponse = jsonDecode(response.body);
+        print(response.statusCode.toString());
         return jsonResponse;
       case 400:
+        print(response.statusCode.toString());
         throw BadException(response.body.toString());
+
       case 404:
+        print(response.statusCode.toString());
         throw UnAuthorisedException(response.body.toString());
       default :
+        print(response.statusCode.toString());
          throw FetchException(response.statusCode.toString());
     }
   }

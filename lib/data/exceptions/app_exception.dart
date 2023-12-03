@@ -12,7 +12,6 @@ class AppException implements Exception{
 
 class FetchException extends AppException{
   FetchException([ String? message]) : super(message!, 'Error fetching Data');
-
 }
 
 class BadException extends AppException{

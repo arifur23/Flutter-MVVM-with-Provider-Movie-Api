@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_mvvm_provider_api/data/repository/movie_repository.dart';
 import 'package:flutter_mvvm_provider_api/data/response/api_response.dart';

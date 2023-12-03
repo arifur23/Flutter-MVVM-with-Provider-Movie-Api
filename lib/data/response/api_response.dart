@@ -1,5 +1,6 @@
 import 'package:flutter_mvvm_provider_api/data/response/status.dart';
 
+
 class ApiResponse<T>{
   Status status;
   T? data;
